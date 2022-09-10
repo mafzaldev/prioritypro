@@ -1,14 +1,18 @@
 import React from "react";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { IoAddCircleSharp } from "react-icons/io5";
 
-export default function TodoForm(props) {
+export default function TodoForm({ todoList, setTodoList }) {
   const [todo, setTodo] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (todo !== "") {
-      props.setTodoList([...props.todoList, { id: uuidv4(), text: todo }]);
+      setTodoList([
+        ...todoList,
+        { id: uuidv4(), text: todo, completed: false },
+      ]);
       setTodo("");
     }
   };
@@ -17,10 +21,14 @@ export default function TodoForm(props) {
     <form onSubmit={handleSubmit} className="form">
       <input
         type="text"
+        placeholder="Type your todo"
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
+        required
       />
-      <button type="submit">Add Todo</button>
+      <button type="submit">
+        <IoAddCircleSharp size={30} />
+      </button>
     </form>
   );
 }
