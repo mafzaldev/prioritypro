@@ -5,7 +5,7 @@ import Modal from "./Modal";
 
 export default function TodoItem({ todo, onDelete, onEdit, onCheck }) {
   const [modal, setModal] = useState(false);
-  const [check, setCheck] = useState(true);
+  const [check, setCheck] = useState(todo.completed);
 
   const handleModal = () => {
     setModal((prev) => !prev);
@@ -25,7 +25,7 @@ export default function TodoItem({ todo, onDelete, onEdit, onCheck }) {
         <input
           type="checkbox"
           title="Mark as completed"
-          value={check}
+          checked={check}
           onChange={handleCheck}
         />
         <span
