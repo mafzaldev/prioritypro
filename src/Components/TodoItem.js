@@ -10,18 +10,24 @@ export default function TodoItem({ todo, onDelete, onEdit, onCheck }) {
   const handleModal = () => {
     setModal((prev) => !prev);
   };
+
   const handleCheck = (e) => {
     setCheck((prev) => !prev);
     onCheck(todo.id);
   };
+
   return (
     <>
       {modal && (
         <Modal id={todo.id} handleModal={handleModal} onEdit={onEdit} />
       )}
       <li className="item">
-        <input type="checkbox" value={check} onChange={handleCheck} />
-
+        <input
+          type="checkbox"
+          title="Mark as completed"
+          value={check}
+          onChange={handleCheck}
+        />
         <span
           style={todo.completed ? { textDecoration: "line-through 2px" } : {}}
         >
@@ -29,6 +35,7 @@ export default function TodoItem({ todo, onDelete, onEdit, onCheck }) {
         </span>
         <button
           type="button"
+          title="Edit task"
           className="action delete"
           onClick={() => handleModal()}
         >
@@ -37,6 +44,7 @@ export default function TodoItem({ todo, onDelete, onEdit, onCheck }) {
 
         <button
           type="button"
+          title="Delete task"
           className="action edit"
           onClick={() => onDelete(todo.id)}
         >

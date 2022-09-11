@@ -21,12 +21,12 @@ export default function TodoForm({ todoList, setTodoList }) {
     <form onSubmit={handleSubmit} className="form">
       <input
         type="text"
-        placeholder="Type your todo"
+        placeholder="Type your task here..."
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
         required
       />
-      <button type="submit">
+      <button type="submit" title="Add task">
         <IoAddCircleSharp size={30} />
       </button>
     </form>

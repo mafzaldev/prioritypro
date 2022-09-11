@@ -1,18 +1,10 @@
 import "./App.css";
-import { useState } from "react";
 import TodoForm from "./Components/TodoForm";
 import TodoList from "./Components/TodoList";
-import { useEffect } from "react";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
-  const Todos = [
-    { id: 1, text: "Learn HTML", completed: false },
-    { id: 2, text: "Learn CSS", completed: false },
-    { id: 3, text: "Learn Javascript", completed: false },
-    { id: 4, text: "Learn React", completed: false },
-  ];
-
-  const [todoList, setTodoList] = useState(Todos || []);
+  const [todoList, setTodoList] = useLocalStorage("todos", []);
   const onDelete = (id) => {
     setTodoList(todoList.filter((todo) => todo.id !== id));
   };

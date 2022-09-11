@@ -12,6 +12,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
   color: white;
   margin-top: 40px;
@@ -69,6 +70,21 @@ ul {
   border-radius: 5px;
 }
 
+.item input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 16px;
+  width: 16px;
+  border: solid 1px #2196f3;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.item input[type="checkbox"]:checked {
+  background-color: #2196f3;
+}
+
 .item span {
   text-align: left;
   width: 300px;
@@ -93,7 +109,6 @@ ul {
   background: #2196f3;
 }
 
-/* Modal */
 .modal-backdrop {
   position: fixed;
   top: 0;
