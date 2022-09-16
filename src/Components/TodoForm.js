@@ -10,8 +10,8 @@ export default function TodoForm({ todoList, setTodoList }) {
     e.preventDefault();
     if (todo !== "") {
       setTodoList([
-        ...todoList,
         { id: uuidv4(), text: todo, completed: false },
+        ...todoList,
       ]);
       setTodo("");
     }

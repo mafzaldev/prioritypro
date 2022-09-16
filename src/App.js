@@ -5,6 +5,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
   const [todoList, setTodoList] = useLocalStorage("todos", []);
+
   const onDelete = (id) => {
     setTodoList(todoList.filter((todo) => todo.id !== id));
   };

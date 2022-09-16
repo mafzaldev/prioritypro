@@ -8,8 +8,8 @@ const Modal = ({ id, handleModal, onEdit }) => {
     e.preventDefault();
     if (editedTodo !== "") {
       onEdit(id, editedTodo);
-      handleModal();
     }
+    handleModal();
   };
 
   return (
@@ -23,7 +23,6 @@ const Modal = ({ id, handleModal, onEdit }) => {
             onChange={(e) => {
               setEditedTodo(e.target.value);
             }}
-            required
           />
           <button type="submit">
             <IoAddCircleSharp size={30} />

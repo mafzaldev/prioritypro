@@ -55,6 +55,10 @@ h1 {
   gap: 10px;
 }
 
+.list .notfound {
+  margin-top: 100px;
+}
+
 ul {
   list-style: none;
   margin: 0;
@@ -129,7 +133,6 @@ ul {
   border-radius: 12px;
   background-color: #16161d;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 5px solid #2196f3;
@@ -163,5 +166,8 @@ ul {
 
   .item span {
     width: 180px;
+  }
+  .modal {
+    width: 330px;
   }
 }
