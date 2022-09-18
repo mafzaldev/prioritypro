@@ -5,9 +5,9 @@ export default function TodoList({ todoList, onDelete, onEdit, onCheck }) {
   return (
     <ul className="list">
       {todoList.length > 0 ? (
-        todoList.map((todo, index) => (
+        todoList.map((todo) => (
           <TodoItem
-            key={index}
+            key={todo.id}
             todo={todo}
             onDelete={onDelete}
             onEdit={onEdit}
