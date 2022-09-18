@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IoAddCircleSharp } from "react-icons/io5";
+import { FiEdit } from "react-icons/fi";
 
 const Modal = ({ id, handleModal, onEdit }) => {
   const [editedTodo, setEditedTodo] = useState("");
@@ -8,13 +8,13 @@ const Modal = ({ id, handleModal, onEdit }) => {
     e.preventDefault();
     if (editedTodo !== "") {
       onEdit(id, editedTodo);
+      handleModal();
     }
-    handleModal();
   };
 
   return (
-    <div className="modal-backdrop">
-      <div className="modal">
+    <div onClick={handleModal} className="modal-backdrop">
+      <div onClick={(e) => e.stopPropagation()} className="modal">
         <form className="form" onSubmit={handleSubmit}>
           <input
             type="text"
@@ -25,7 +25,7 @@ const Modal = ({ id, handleModal, onEdit }) => {
             }}
           />
           <button type="submit">
-            <IoAddCircleSharp size={30} />
+            <FiEdit size={20} />
           </button>
         </form>
       </div>

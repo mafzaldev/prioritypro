@@ -75,18 +75,12 @@ ul {
 }
 
 .item input[type="checkbox"] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  accent-color: #2196f3;
   height: 16px;
   width: 16px;
-  border: solid 1px #2196f3;
   border-radius: 2px;
+  outline: none;
   cursor: pointer;
-}
-
-.item input[type="checkbox"]:checked {
-  background-color: #2196f3;
 }
 
 .item span {
