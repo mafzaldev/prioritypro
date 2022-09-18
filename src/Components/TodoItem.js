@@ -34,9 +34,9 @@ export default function TodoItem({ todo, onDelete, onEdit, onCheck }) {
           {todo.text}
         </span>
         <button
-          type="button"
+          type="s"
           title="Edit task"
-          className="action delete"
+          className="action edit"
           onClick={() => handleModal()}
         >
           <FiEdit size={20} />
@@ -45,7 +45,7 @@ export default function TodoItem({ todo, onDelete, onEdit, onCheck }) {
         <button
           type="button"
           title="Delete task"
-          className="action edit"
+          className="action delete"
           onClick={() => onDelete(todo.id)}
         >
           <AiFillDelete size={20} />
