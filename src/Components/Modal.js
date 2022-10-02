@@ -18,7 +18,7 @@ const Modal = ({ id, handleModal, onEdit }) => {
         <form className="form" onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Edit your todo"
+            placeholder="Edit your task here..."
             value={editedTodo}
             onChange={(e) => {
               setEditedTodo(e.target.value);

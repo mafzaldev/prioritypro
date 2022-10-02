@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AiFillDelete } from "react-icons/ai";
+import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 import Modal from "./Modal";
 
@@ -48,7 +48,7 @@ export default function TodoItem({ todo, onDelete, onEdit, onCheck }) {
           className="action delete"
           onClick={() => onDelete(todo.id)}
         >
-          <AiFillDelete size={20} />
+          <AiOutlineDelete size={21} />
         </button>
       </li>
     </>

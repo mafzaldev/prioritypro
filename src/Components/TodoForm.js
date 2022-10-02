@@ -27,7 +27,7 @@ export default function TodoForm({ todoList, setTodoList }) {
         required
       />
       <button type="submit" title="Add task">
-        <IoAddCircleSharp size={30} />
+        <IoAddCircleSharp size={25} />
       </button>
     </form>
   );
