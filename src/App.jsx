@@ -1,7 +1,7 @@
+import "./App.css";
 import TodoForm from "./Components/TodoForm";
 import TodoList from "./Components/TodoList";
 import useLocalStorage from "./hooks/useLocalStorage";
-import "./App.css";
 
 function App() {
   const [todoList, setTodoList] = useLocalStorage("todos", []);
