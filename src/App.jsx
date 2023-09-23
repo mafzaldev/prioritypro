@@ -1,15 +1,18 @@
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import "./App.css";
 import Modal from "./components/Modal";
+import { tempTodos } from "./lib";
 
 import TodoList from "./components/TodoList";
 import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
   const [modal, setModal] = useState(false);
-  const [todoList, setTodoList] = useLocalStorage("todos", []);
+  const [todoList, setTodoList] = useLocalStorage(
+    "prioritypro-todos",
+    tempTodos
+  );
 
   const onAdd = (value) => {
     setTodoList([{ id: uuidv4(), text: value, completed: false }, ...todoList]);
@@ -39,7 +42,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="flex flex-col items-center justify-center mt-16">
       <Modal
         open={modal}
         handleModal={handleModal}
