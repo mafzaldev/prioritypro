@@ -1,6 +1,6 @@
-import { PlusIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { PlusIcon } from "@heroicons/react/24/outline";
 import Modal from "./components/Modal";
 import { tempTodos } from "./lib";
 

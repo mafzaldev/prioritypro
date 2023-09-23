@@ -1,6 +1,6 @@
-import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import Modal from "./Modal";
+import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 export default function TodoItem({ todo, onDelete, onEdit, onCheck }) {
   const [modal, setModal] = useState(false);
