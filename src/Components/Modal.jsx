@@ -1,23 +1,47 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
-export default function Modal({ open, setOpen, todoValue, action, onAdd }) {
-  const [value, setValue] = useState(todoValue || "");
+export default function Modal({
+  open,
+  handleModal,
+  todoValue,
+  action,
+  onSubmit,
+}) {
+  const [todo, setTodo] = useState(
+    todoValue || {
+      id: "",
+      text: "",
+    }
+  );
 
-  const handleSubmit = () => {
-    onAdd(value);
-    setOpen();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!todo.text) return;
+
+    if (action === "Edit") {
+      onSubmit(todo.id, todo.text);
+    } else {
+      onSubmit(todo.text);
+    }
+    handleModal();
   };
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+      <Dialog
+        as="div"
+        className="relative z-10"
+        onClose={() => {
+          handleModal();
+        }}
+      >
         <Transition.Child
           as={Fragment}
-          enter="ease-out duration-300"
+          enter="ease-out duration-100"
           enterFrom="opacity-0"
           enterTo="opacity-100"
-          leave="ease-in duration-200"
+          leave="ease-in duration-100"
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
@@ -44,9 +68,12 @@ export default function Modal({ open, setOpen, todoValue, action, onAdd }) {
                     <input
                       type="text"
                       id="todo"
-                      value={value}
+                      value={todo.text}
                       onChange={(e) => {
-                        setValue(e.target.value);
+                        setTodo({
+                          ...todo,
+                          text: e.target.value,
+                        });
                       }}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       placeholder="Read 10 pages of XYZ book"
