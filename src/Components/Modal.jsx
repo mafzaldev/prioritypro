@@ -1,67 +1,72 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import { CSSTransition } from "react-transition-group";
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useState } from "react";
 
-import Backdrop from "./Backdrop";
+export default function Modal({ open, setOpen, todoValue, action, onAdd }) {
+  const [value, setValue] = useState(todoValue || "");
 
-const ModalOverlay = ({ id, handleModal, onEdit }) => {
-  const [editedTodo, setEditedTodo] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (editedTodo !== "") {
-      onEdit(id, editedTodo);
-      handleModal();
-    }
+  const handleSubmit = () => {
+    onAdd(value);
+    setOpen();
   };
-  const content = (
-    <div onClick={(e) => e.stopPropagation()} className="modal">
-      <form className="form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Edit your task here..."
-          value={editedTodo}
-          onChange={(e) => {
-            setEditedTodo(e.target.value);
-          }}
-        />
-        <button type="submit">
-          <svg
-            style={{ width: "2rem", height: "2rem" }}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-            />
-          </svg>{" "}
-        </button>
-      </form>
-    </div>
-  );
-  return ReactDOM.createPortal(content, document.getElementById("modal"));
-};
 
-const Modal = (props) => {
   return (
-    <>
-      {props.show && <Backdrop onClick={props.handleModal} />}
-      <CSSTransition
-        in={props.show}
-        mountOnEnter
-        unmountOnExit
-        timeout={200}
-        classNames="modal"
-      >
-        <ModalOverlay {...props} />
-      </CSSTransition>
-    </>
-  );
-};
+    <Transition.Root show={open} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+        </Transition.Child>
 
-export default Modal;
+        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              enterTo="opacity-100 translate-y-0 sm:scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            >
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-[#111] px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                <div>
+                  <div>
+                    <label htmlFor="todo" className="sr-only">
+                      Todo
+                    </label>
+                    <input
+                      type="text"
+                      id="todo"
+                      value={value}
+                      onChange={(e) => {
+                        setValue(e.target.value);
+                      }}
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      placeholder="Read 10 pages of XYZ book"
+                    />
+                  </div>
+                </div>
+                <div className="mt-5 sm:mt-6">
+                  <button
+                    type="button"
+                    className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    onClick={handleSubmit}
+                  >
+                    {action}
+                  </button>
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
+        </div>
+      </Dialog>
+    </Transition.Root>
+  );
+}

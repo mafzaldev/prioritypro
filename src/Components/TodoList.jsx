@@ -15,7 +15,7 @@ export default function TodoList({ todoList, onDelete, onEdit, onCheck }) {
           />
         ))
       ) : (
-        <span className="notfound">
+        <span>
           Nothing to find here,
           <br />
           Use the above field to add your tasks.
